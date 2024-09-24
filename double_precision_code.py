@@ -26,6 +26,13 @@ class doublePrec():
         return new_man, new_exp, new_sign
 
 def convertDouble(num):
+    a = 0.1
+    b = 0.2
+    c = a * b
+    d = a/b
+    print(c)
+    print(d)
+    
         
 
 def main():
