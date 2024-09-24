@@ -24,6 +24,37 @@ class doublePrec():
         new_exp = self.exponent + other.exponent
         new_sign = self.sign * other.sign
         return new_man, new_exp, new_sign
+    
+    def __truediv__(self, other):
+        new_man = self.mantissa / other.mantissa
+        new_exp = self.exponent - other.exponent
+        new_sign = self.sign * other.sign
+        return new_man, new_exp, new_sign
+
+    def __add__(self, other):
+        if self.exponent != other.exponent:
+            diff_exp = self.exponent - other.exponent
+            new_exp  = other.exponent + diff_exp
+            mew_man = other.mantissa * (10** -diff_exp)
+            new_man = other.sign * mew_man + self.sign * self.mantissa
+            if new_man < 0:
+                new_sign = -1
+            else:
+                new_sign = 1
+            return new_man, new_exp, new_sign
+
+        else:
+            new_man = self.sign * self.mantissa + other.sign * other.mantissa
+            new_exp = self.exponent
+            if new_man < 0:
+                new_sign = -1
+            else:
+                new_sign = 1
+            return new_man, new_exp, new_sign    
+
+
+        
+
 
 def convertDouble(num):
     a = 0.1
