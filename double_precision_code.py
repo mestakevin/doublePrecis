@@ -57,8 +57,8 @@ class doublePrec():
 
 
 def convertDouble(num):
-    a = 0.1
-    b = 0.2
+    a = -1.2e10
+    b = -6.0e7
     c = a * b
     d = a/b
     print(c)
@@ -68,7 +68,7 @@ def convertDouble(num):
 
 def main():
         num = doublePrec(1.2,10,-1)
-        num2 = doublePrec(6.0, 0.1, -1)
+        num2 = doublePrec(6.0, 7, -1)
         print
    
 
