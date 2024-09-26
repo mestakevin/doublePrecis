@@ -56,20 +56,24 @@ class doublePrec():
         
 
 
-def convertDouble(num):
+def convertDouble():
     a = -1.2e10
     b = -6.0e7
     c = a * b
     d = a/b
-    print(c)
-    print(d)
+    print("Alg")
+    print("mult: ", c)
+    print("div: ", d)
     
         
 
 def main():
         num = doublePrec(1.2,10,-1)
         num2 = doublePrec(6.0, 7, -1)
-        print
+        num3 = num * num2
+        print("our number: ", num3)
+        
+        convertDouble()
    
 
 
