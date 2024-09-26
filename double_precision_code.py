@@ -17,7 +17,7 @@ class doublePrec():
         new_man = self.mantissa * other.mantissa
         new_exp = self.exponent + other.exponent - 10  # Adjust for mantissa scaling
         new_sign = self.sign * other.sign
-        return doublePrec(new_man / (10**10), new_exp, new_sign)
+        return doublePrec(new_man / (10**20), new_exp, new_sign)
 
     def __truediv__(self, other):
         new_man = self.mantissa / other.mantissa
@@ -51,15 +51,21 @@ def convertDouble():
     b = -6.0e7
     c = a * b
     d = a / b
+    f = a + b
     print("Standard Python:")
     print("Mult:", c)
     print("Div:", d)
+    print("Add:", f)
 
 def main():
     num = doublePrec(1.2, 10, -1)
     num2 = doublePrec(6.0, 7, -1)
     num3 = num * num2
-    print("Our number (custom class):", num3)
+    num4 = num / num2
+    num5 = num + num2
+    print("Mult (custom class):", num3)
+    print("Div (custom class):", num4)
+    print("Add (custom class):", num5)
     
     convertDouble()
 
