@@ -17,9 +17,9 @@ def main():
   print(random_list)
   for i in range (len(random_list), N):
       
-
+  return list_size
 #plotting
-plt.plot(time,random_list)
+plt.plot(time,list_size)
 plt.xlabel('List Size')
 plt.ylabel('List Values')
 plt.title('Lists as A Function of List Size')
