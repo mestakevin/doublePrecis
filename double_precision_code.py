@@ -51,15 +51,24 @@ class doublePrec():
         return f"{self.sign * self.mantissa / (10**10)}e{self.exponent}"
 
     def __ne__(self, other): #not equal to function
-        if self.a != other.b:
+        if (self - other) != 0:
             print("A is not equal to B")
         else:
             print("A is equal to B")
+
+
     def __ge__(self, other): #greater than or equal to
-        if self.a >= other.b:
+        if (self - other) >= 0:
             print("A is greater than or equal to B")
         else:
             print("A is less than B")
+    
+    def __gt__(self, other): #greater than or equal to
+        if (self - other) > 0:
+            print("A is greater than B")
+        else:
+            print("A is less than B")
+
 
 # Conversion functions and testing
 def convertDouble():
