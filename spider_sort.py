@@ -1,4 +1,6 @@
-
+import random
+import time
+from matplotlib import pyplot as plt
 def bubbleSort(a_list):
     length = len(a_list)
     temp_list = []
@@ -11,9 +13,6 @@ def bubbleSort(a_list):
 
     return a_list
             
-
-def main():
-import random
 
 # Function to generate a list of random numbers
 def generate_random_list(n, lower_bound, upper_bound):
