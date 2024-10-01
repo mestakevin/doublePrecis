@@ -70,13 +70,6 @@ def main():
   for i in range (0, N):
       length = len(random_list)
   return length
-#plotting
-#    plt.plot(time,length)
-#    plt.xlabel('Time')
-#    plt.ylabel('List size')
-#    plt.title('List size as a Function of Time')
-#    plt.grid()
-
     n = int(1e3)
     N = 1000 #final  
     lower_bound = 0
@@ -89,7 +82,7 @@ def main():
         cur_list = generate_random_list(i, 0, 100)
         sorted_list, tot_time = bubbleSort(cur_list)
         time_list.append(tot_time)
-        sorted_list, total_time = heapify(cur_list)
+        sort_list, total_time = heapify(cur_list)
         times_list.append(total_time)
 
     #plotting
