@@ -29,16 +29,17 @@ class doublePrec():
         # Align exponents
         if self.exponent > other.exponent:
             diff_exp = self.exponent - other.exponent
-            adjusted_other_man = other.mantissa * (10 ** diff_exp)
+            adjusted_other_man = other.mantissa / (10 ** diff_exp)
             new_man = self.sign * self.mantissa + other.sign * adjusted_other_man
             new_exp = self.exponent
         else:
             diff_exp = other.exponent - self.exponent
-            adjusted_self_man = self.mantissa * (10 ** diff_exp)
+            adjusted_self_man = self.mantissa / (10 ** diff_exp)
             new_man = self.sign * adjusted_self_man + other.sign * other.mantissa
             new_exp = other.exponent
 
         new_sign = -1 if new_man < 0 else 1
+        new_man  = abs(new_man)
         return doublePrec(abs(new_man) / (10**10), new_exp, new_sign)
 
     def __str__(self):
