@@ -44,10 +44,6 @@ class doublePrec():
     def __str__(self):
         # Display number in scientific notation
         return f"{self.sign * self.mantissa / (10**10)}e{self.exponent}"
-    def __ne__(self, other): #not equal to function
-        return self.value != other.value
-    def __ge__(self, other): #greater than or equal to
-        return self.value >= other.value
 
 # Conversion functions and testing
 def convertDouble():
@@ -60,10 +56,18 @@ def convertDouble():
     print("Mult:", c)
     print("Div:", d)
     print("Add:", f)
-    print(f"Using operator.__ne__: {result}")  # output true or false (not equal to function)
-    print(f"Using operator.__ge__: {result}")  # output true or false (greater than or equal to)
     q = ne(a,b)
     print(q)
+    def __ne__(self, other): #not equal to function
+        if self.a != other.b:
+            print("A is not equal to B")
+        else:
+            print("A is equal to B")
+    def __ge__(self, other): #greater than or equal to
+        if self.a >= other.b:
+            print("A is greater than or equal to B")
+        else:
+            print("A is less than B")
 
 def main():
     num = doublePrec(1.2, 10, -1)
