@@ -69,6 +69,26 @@ class doublePrec():
         else:
             print("A is less than B")
 
+    def __ls__(self, other):
+        # less than
+        if self.exponent == other.exponent:
+            return self.mantissa < other.mantissa
+        elif self.exponent > other.exponent:
+            return False
+        else:
+            return True
+
+    def __eq__(self, other):
+        # less than equal
+        ex_diff = self.exponent - other.exponent
+        self.exponent -= ex_diff
+        self.mantissa *= 10 ** ex_diff
+        return self.mantissa == other.mantissa
+    
+    def __le__(self, other):
+        # less than equal
+        return (__ls__(self, other) or __eq__(self, other))
+
 
 # Conversion functions and testing
 def convertDouble():
