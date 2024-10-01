@@ -74,6 +74,10 @@ def convertDouble():
     print("Div:", d)
     print("Add:", f)
     print("Sub:", g)
+    print("A is greater than B:", a > b)
+    print("A is greater and equal to B:", a >= b)
+    print("A is less than B:", a < b)
+    print("A is less and equal to B:", a <= b)    
 
 def main():
     num = doublePrec(1.2, 10, -1)
@@ -86,6 +90,7 @@ def main():
     print("Div (custom class):", num4)
     print("Add (custom class):", num5)
     print("Sub (custom class):", num6)
+    
     convertDouble()
 
 main()
