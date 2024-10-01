@@ -10,13 +10,16 @@ def generate_random_list(n, lower_bound, upper_bound):
 
 def main():
   n = int(1e3)
+  N = 1000 #final  
   lower_bound = 0
   upper_bound = 100
   random_list = generate_random_list(n, lower_bound, upper_bound)
   print(random_list)
+  for i in range (len(random_list), N):
+      
 
 #plotting
-plt.plot(,random_list)
+plt.plot(time,random_list)
 plt.xlabel('List Size')
 plt.ylabel('List Values')
 plt.title('Lists as A Function of List Size')
