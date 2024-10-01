@@ -7,8 +7,8 @@ def bubbleSort(a_list):
     temp_list = []
     time_now = time.time()
     for i in range(0, length-1):
-        for j in i:
-            if a_list[i] > a_list[i+1]
+        for j in range(i):
+            if a_list[i] > a_list[i+1]:
                 temp = a_list[i]
                 a_list[i] = a_list[i+1]
                 a_list[i+1] = temp
