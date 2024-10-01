@@ -50,14 +50,6 @@ class doublePrec():
         # Display number in scientific notation
         return f"{self.sign * self.mantissa / (10**10)}e{self.exponent}"
 
-# Conversion functions and testing
-def convertDouble():
-    a = -1.2e10
-    b = -6.0e7
-    c = a * b
-    d = a / b
-    f = a + b
-    g = a - b
     def __ne__(self, other): #not equal to function
         if self.a != other.b:
             print("A is not equal to B")
@@ -68,6 +60,15 @@ def convertDouble():
             print("A is greater than or equal to B")
         else:
             print("A is less than B")
+
+# Conversion functions and testing
+def convertDouble():
+    a = -1.2e10
+    b = -6.0e7
+    c = a * b
+    d = a / b
+    f = a + b
+    g = a - b
     print("Sub:", g)
     print("Standard Python:")
     print("Mult:", c)
