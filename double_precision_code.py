@@ -58,6 +58,17 @@ def convertDouble():
     d = a / b
     f = a + b
     g = a - b
+    def __ne__(self, other): #not equal to function
+        if self.a != other.b:
+            print("A is not equal to B")
+        else:
+            print("A is equal to B")
+    def __ge__(self, other): #greater than or equal to
+        if self.a >= other.b:
+            print("A is greater than or equal to B")
+        else:
+            print("A is less than B")
+    print("Sub:", g)
     print("Standard Python:")
     print("Mult:", c)
     print("Div:", d)
