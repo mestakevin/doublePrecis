@@ -26,7 +26,6 @@ class doublePrec():
         return doublePrec(new_man, new_exp, new_sign)
 
     def __add__(self, other):
-        # Align exponents
         if self.exponent > other.exponent:
             diff_exp = self.exponent - other.exponent
             adjusted_other_man = other.mantissa / (10 ** diff_exp)
@@ -42,6 +41,11 @@ class doublePrec():
         new_man  = abs(new_man)
         return doublePrec(abs(new_man) / (10**10), new_exp, new_sign)
 
+    def __sub__(self, other):
+        # Subtraction is just addition with the other number's sign flipped
+        negated_other = doublePrec(other.mantissa / (10**10), other.exponent, -other.sign)
+        return self.__add__(negated_other)
+
     def __str__(self):
         # Display number in scientific notation
         return f"{self.sign * self.mantissa / (10**10)}e{self.exponent}"
@@ -53,10 +57,12 @@ def convertDouble():
     c = a * b
     d = a / b
     f = a + b
+    g = a - b
     print("Standard Python:")
     print("Mult:", c)
     print("Div:", d)
     print("Add:", f)
+    print("Sub:", g)
 
 def main():
     num = doublePrec(1.2, 10, -1)
@@ -64,10 +70,11 @@ def main():
     num3 = num * num2
     num4 = num / num2
     num5 = num + num2
+    num6 = num - num2
     print("Mult (custom class):", num3)
     print("Div (custom class):", num4)
     print("Add (custom class):", num5)
-    
+    print("Sub (custom class):", num6)
     convertDouble()
 
 main()
