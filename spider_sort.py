@@ -14,5 +14,15 @@ def main():
   upper_bound = 100
   random_list = generate_random_list(n, lower_bound, upper_bound)
   print(random_list)
-  
+
+#plotting
+plt.plot(,random_list)
+plt.xlabel('List Size')
+plt.ylabel('List Values')
+plt.title('Lists as A Function of List Size')
+plt.grid()
+
+plt.show()
+
+
 main()
