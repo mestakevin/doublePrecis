@@ -25,6 +25,41 @@ def generate_random_list(n, lower_bound, upper_bound):
         random_list.append(random_number)
     return random_list
 
+def heap(list):
+    """
+    Heap Sort
+    """
+    start_time = time.time()
+    build_max_heap(list)
+    for i in range (n, 1, -1):
+        n -= 1
+        heapify(list, i, n)
+    end_time = time.time()
+    tot_time = end_time - start_time
+    return list, tot_time
+
+def build_max_heap(list):
+    n = len(list)
+    for i in range (n / 2, 1, -1):
+        heapify(list, i, n)
+
+def heapify(list, i, n):
+    left = 2 * i
+    right = 2 * i + 1
+
+    if (left <= n) and (list[left] > list[i]):
+        max = left
+    else:
+        max = i
+
+    if(right <= n) and (list[right] > list[max]):
+        max = right
+    if (max != i):
+        swap = list[i]
+        list[i] = list[max]
+        list[max] = swap
+        heapify(list, max)
+
 def main():
   n = int(1e3)
   N = 10 #final  
