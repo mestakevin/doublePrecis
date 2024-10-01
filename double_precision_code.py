@@ -69,7 +69,6 @@ def convertDouble():
     d = a / b
     f = a + b
     g = a - b
-    print("Sub:", g)
     print("Standard Python:")
     print("Mult:", c)
     print("Div:", d)
