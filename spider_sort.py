@@ -1,6 +1,6 @@
 import random
 import time
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 def bubbleSort(a_list):
     length = len(a_list)
@@ -25,42 +25,73 @@ def generate_random_list(n, lower_bound, upper_bound):
         random_list.append(random_number)
     return random_list
 
-def main():
-  n = int(1e3)
-  N = 10 #final  
-  lower_bound = 0
-  upper_bound = 100
-  random_list = generate_random_list(n, lower_bound, upper_bound)
-  print(random_list)
-  for i in range (0, N):
-      length = len(random_list)
-  return length
-#plotting
-    plt.plot(time,length)
-    plt.xlabel('Time')
-    plt.ylabel('List size')
-    plt.title('List size as a Function of Time')
-    plt.grid()
+def heap(list):
+    """
+    Heap Sort
+    """
+    start_time = time.time()
+    build_max_heap(list)
+    for i in range (n, 1, -1):
+        n -= 1
+        heapify(list, i, n)
+    end_time = time.time()
+    tot_time = end_time - start_time
+    return list, tot_time
 
+def build_max_heap(list):
+    n = len(list)
+    for i in range (n / 2, 1, -1):
+        heapify(list, i, n)
+
+def heapify(list, i, n):
+    left = 2 * i
+    right = 2 * i + 1
+
+    if (left <= n) and (list[left] > list[i]):
+        max = left
+    else:
+        max = i
+
+    if(right <= n) and (list[right] > list[max]):
+        max = right
+    if (max != i):
+        swap = list[i]
+        list[i] = list[max]
+        list[max] = swap
+        heapify(list, max)
+
+def main():
     n = int(1e3)
     N = 1000 #final  
     lower_bound = 0
     upper_bound = 100
     random_list = generate_random_list(n, lower_bound, upper_bound)
+   #testing that generate_random_list function works
     print(random_list)
-    time_list=[]
+    
+   #initilaize empty time lists 
+    bubble_time_list= []
+    heap_time_list = []
 
     for i in range(1,N,1):
         cur_list = generate_random_list(i, 0, 100)
-        sorted_list, tot_time = bubbleSort(cur_list)
-        time_list.append(tot_time)
+        bubble_sorted_list, bubble_tot_time = bubbleSort(cur_list)
+        bubble_time_list.append(bubble_tot_time)
+       
+       #NOT WORKING CURRENTLY
+       #heap_sorted_list, heap_tot_time = heap(cur_list)
+       #heap_time_list.append(heap_tot_time)
+        
 
     #plotting
-    plt.plot(range(1,N,1), time_list)
+    plt.plot(range(1,N,1), bubble_time_list, label='Bubble Sort')
+    #not working currently
+    #plt.plot(range(1,N,1), heap_time_list, label='Heap Sort')
     plt.xlabel('List Size')
-    plt.ylabel('List Values')
+    plt.ylabel('Time')
     plt.title('Lists as A Function of List Size')
+    plt.legend()
     plt.grid()
-
     plt.show()
+
 main()
