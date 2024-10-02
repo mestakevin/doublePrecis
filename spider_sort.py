@@ -1,6 +1,6 @@
 import random
 import time
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 def bubbleSort(a_list):
     length = len(a_list)
