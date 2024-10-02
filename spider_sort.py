@@ -61,14 +61,6 @@ def heapify(list, i, n):
         heapify(list, max)
 
 def main():
-    n = int(1e3)
-    N = 1000 #final  
-    lower_bound = 0
-    upper_bound = 100
-    random_list = generate_random_list(n, lower_bound, upper_bound)
-   #testing that generate_random_list function works
-    print(random_list)
-    
    #initilaize empty time lists 
     bubble_time_list= []
     heap_time_list = []
