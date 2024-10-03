@@ -14,8 +14,8 @@ def generate_random_list(n, lower_bound, upper_bound):
         random_number = random.uniform(lower_bound, upper_bound)  
         random_list.append(random_number)
     return random_list
-
-def cdf(random_list):
+#inverse cdf function
+def inverse_cdf(random_list):
     function = np.ln(prob*(np.exp(x)-1))
     return function
 
