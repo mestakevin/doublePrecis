@@ -17,7 +17,7 @@ def generate_random_list(n, lower_bound, upper_bound):
 
 #inverse cdf function
 def inverse_cdf(random_list):
-    function = np.ln(prob*(np.e-1))
+    function = np.ln(random_list[i]*(np.e-1))
     return function
 
 
