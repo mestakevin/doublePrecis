@@ -2,6 +2,8 @@ import random
 import time
 import matplotlib.pyplot as plt
 
+N = 1000
+
 def bubbleSort(a_list):
     length = len(a_list)
     temp_list = []
@@ -25,40 +27,49 @@ def generate_random_list(n, lower_bound, upper_bound):
         random_list.append(random_number)
     return random_list
 
-def heap(list):
+def heapify(arr, n, i):
     """
-    Heap Sort
+    This method does the heap tree swapping, and remove the highest number while sorted.
+        'n' -- size of the heap binary tree, 
+        'i' -- current tree node index
     """
-    start_time = time.time()
-    build_max_heap(list)
-    for i in range (n, 1, -1):
-        n -= 1
-        heapify(list, i, n)
-    end_time = time.time()
-    tot_time = end_time - start_time
-    return list, tot_time
+    largest = i  # initialize largest as root
+    left = 2 * i + 1  # left child index
+    right = 2 * i + 2  # right child index
 
-def build_max_heap(list):
-    n = len(list)
-    for i in range (n / 2, 1, -1):
-        heapify(list, i, n)
+    if left < n and arr[left] > arr[largest]:              # if left child exists and is larger than root
+        largest = left
 
-def heapify(list, i, n):
-    left = 2 * i
-    right = 2 * i + 1
+    if right < n and arr[right] > arr[largest]:            # if right child exists and is larger than largest so far
+        largest = right
 
-    if (left <= n) and (list[left] > list[i]):
-        max = left
-    else:
-        max = i
+    if largest != i:                                       # if largest is not root
 
-    if(right <= n) and (list[right] > list[max]):
-        max = right
-    if (max != i):
-        swap = list[i]
-        list[i] = list[max]
-        list[max] = swap
-        heapify(list, max)
+        arr[i], arr[largest] = arr[largest], arr[i]        # swap
+        heapify(arr, n, largest)                           # recursion until the tree is heapified
+
+
+def heap(arr):
+    """
+    Function to perform heap sort on the input list 'arr'.
+    """
+
+    time_start = time.time()
+    n = len(arr)
+
+    for i in range(n // 2 - 1, -1, -1):                     # maxheap
+
+        heapify(arr, n, i)
+
+    for i in range(n - 1, 0, -1):                           # extract elements
+        arr[i], arr[0] = arr[0], arr[i]                     # swap the current root (largest element) with the end of the heap
+        heapify(arr, i, 0)                                  # call heapify on the reduced heap
+
+
+    time_end = time.time()                     
+    time_tot = time_end - time_start                        # time diff
+
+    return arr, time_tot                                    # return the sorted array and time
 
 def main():
    #initilaize empty time lists 
@@ -70,20 +81,21 @@ def main():
         bubble_sorted_list, bubble_tot_time = bubbleSort(cur_list)
         bubble_time_list.append(bubble_tot_time)
        
-       #NOT WORKING CURRENTLY
-       #heap_sorted_list, heap_tot_time = heap(cur_list)
-       #heap_time_list.append(heap_tot_time)
+        #NOT WORKING CURRENTLY
+        heap_sorted_list, heap_tot_time = heap(cur_list)
+        heap_time_list.append(heap_tot_time)
         
 
     #plotting
-    plt.plot(range(1,N,1), bubble_time_list, label='Bubble Sort')
-    #not working currently
-    #plt.plot(range(1,N,1), heap_time_list, label='Heap Sort')
+    plt.plot(range(1,N,1), bubble_time_list, color = '#007ba7', label='Bubble Sort')
+    plt.plot(range(1,N,1), heap_time_list, color = '#f6adc6', label='Heap Sort')
     plt.xlabel('List Size')
     plt.ylabel('Time')
     plt.title('Lists as A Function of List Size')
     plt.legend()
     plt.grid()
-    plt.show()
+
+    plot_destination = "figures/bubble_heap_compare.png"
+    plt.savefig(plot_destination, dpi=500)
 
 main()
