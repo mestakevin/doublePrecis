@@ -14,8 +14,6 @@ def draw_rand_points(num):
 def main():
     num_points = 10000
     rand_x, rand_y = draw_rand_points(num_points)
-    area = (math.e + 0.1) * 1
-    hits = 0
     kept_xs = []
     kept_ys = []
     for i in range(0,len(rand_x)-1,1):
@@ -29,10 +27,5 @@ def main():
     plt.figure
     plt.plot(kept_xs,kept_ys)
     plt.show()
-
-
-    area_calculated = (hits/ num_points) * area
-    print(area_calculated)
-
 
 main()
