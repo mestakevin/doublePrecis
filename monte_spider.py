@@ -1,8 +1,7 @@
 #Monte Carlo assignment
 import numpy as np
-#integrate probability
-
-
+import matplotlib.pyplot as plt
+import random
 
     
 # Function to generate a list of random numbers
@@ -17,7 +16,7 @@ def generate_random_list(n, lower_bound, upper_bound):
 
 #inverse cdf function
 def inverse_cdf(random_list):
-    function = np.ln(random_list[i]*(np.e-1))
+    function = [np.log(num * (np.e - 1)) for num in random_list]
     return function
 
 
