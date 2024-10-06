@@ -21,3 +21,15 @@ def inverse_cdf(random_list):
 
 
 def main():
+
+    x = 
+    y = np.exp(x)
+    
+    plt.plot(, function)
+    plt.ylabel()
+    plt.xlabel()
+    plt.title()
+    
+    plt.show()
+    
+main()
