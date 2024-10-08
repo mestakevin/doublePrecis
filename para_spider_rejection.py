@@ -24,14 +24,22 @@ def main():
     num_points = 10000
     hits = 0
     pointlist = draw_rand_points(num_points,func)
+    kept_xs = []
+    kept_ys = []
     for i in range(0,len(pointlist)-1,1):
         x_val = pointlist[i][0]
         y_val = pointlist[i][1]
         if (y_val <= (math.e ** x_val) ):
             hits += 1
-
+            kept_xs.append(x_val)
+            kept_ys.append(y_val)
     efficiency = hits/len(pointlist)
     print(efficiency)    
- 
+    
+
+    plt.figure()
+    plt.plot(kept_xs,kept_ys, '.')
+    plt.show() 
+
 
 main()
