@@ -23,7 +23,7 @@ def main():
 
     function_sorted = np.sort(function)
 
-    plt.hist(function_sorted, bins = 50, color='darkblue', density = True, alph$
+    plt.hist(function_sorted, bins = 50, color='darkblue')
     plt.ylabel('Inverse CDF Values')
     plt.xlabel('Random Values')
     plt.title('Inverse CDF of Random Numbers')
