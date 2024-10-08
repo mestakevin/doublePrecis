@@ -1,5 +1,8 @@
 #Ellipse circumference 
-<<<<<<< HEAD
+import numpy as np
+from matplotlib import pyplot as plt
+from math import pi
+import random
 
 def check_ellipse(x, y, a1, b1, a2, b2):
     """
@@ -11,23 +14,11 @@ def check_ellipse(x, y, a1, b1, a2, b2):
         'a2' -- semi maJor axis of smaller ellipse
         'b1' -- semi miNor axis of smaller ellipse
     """
-    if (x ** 2 / a1 ** 2 + y ** 2 / b1 ** 2 < 1) and (x ** 2 / a2 ** 2 + y ** 2 / b2 ** 2 > 1):
+    if (x ** 2 / a1 ** 2 + y ** 2 / b1 ** 2 <= 1) and (x ** 2 / a2 ** 2 + y ** 2 / b2 ** 2 >= 1):
         return True
     else:
         return False
     
-if __name__ == "__main__":
-    main()
-    
-    
-
-=======
-import numpy as np
-from matplotlib import pyplot as plt
-from math import pi
-import random
-
-
 ##----------------------------------------------------##
 def main():
     u = 0.0    #x-position of the center
@@ -35,27 +26,68 @@ def main():
     a = 5.0    #radius on the x-axis
     b = 2.0    #radius on the y-axis
   
-    #scale factor for the inner ellipse
+    #scale factor for the inner ellipse (very smart)
     dk = 0.97
     a2 = a*dk 
     b2 = b*dk
   
     t = np.linspace(0, 2*pi, 100)
-    plt.plot(u + (a*np.cos(t)), v + b*np.sin(t) , label= "Original ellipse" )
-    plt.plot(u + (a2*np.cos(t)), v + (b2*np.sin(t)) , label= "Inner ellipse" )
-    plt.grid(color='lightgray',linestyle='--')
-    plt.show()
     
     #Rectangle bounds
     x_min = u - a
     x_max = u + a
     y_min = v - b
-    y_max = v + b 
+    y_max = v + b
+    area_rect = (2 * a) * (2 * b)
+
     #Random number generator in a rectangle
-    rand_num_x = random.uniform(x_min, x_max)
-    rand_num_y = random.uniform(y_min, y_max)
+    points_in_bound = 0
+    points_total = 1000
+
+    accept_x = []
+    accept_y = []
+    reject_x = []
+    reject_y = []
+
+    for i in range (points_total):
+        rand_num_x = random.uniform(x_min, x_max)
+        rand_num_y = random.uniform(y_min, y_max)
+        if check_ellipse(rand_num_x, rand_num_y, a, b, a2, b2):
+            points_in_bound += 1
+            accept_x.append(rand_num_x)
+            accept_y.append(rand_num_y)
+        else:
+            reject_x.append(rand_num_x)
+            reject_y.append(rand_num_y)
+    result_ratio = points_in_bound / points_total
+    circ_ellipse = area_rect * result_ratio
+
+    plt.plot(u + (a*np.cos(t)), v + b*np.sin(t) , label= f"Original ellipse, ellipse circum: {circ_ellipse:.2f}" )
+    plt.plot(u + (a2*np.cos(t)), v + (b2*np.sin(t)) , label= f"Inner ellipse, rectangle area: {area_rect:.2f}" )
+    plt.plot(accept_x, accept_y,
+            color = '#66ff00', # bright green
+            marker = "d",
+            linestyle = "None",
+            markersize = 3,
+            label = f"Accepted Points: {points_in_bound}")
+    
+    plt.plot(reject_x, reject_y,
+            color = '#ffb7c5', # cherry blossom pink
+            marker = "d",
+            linestyle = "None",
+            markersize = 1,
+            label = f"Rejected Points: {points_total - points_in_bound}")
     
 
+    plt.grid(color='lightgray',linestyle='--')
+    # plt.show()
+    plt.legend()
+
+    plot_destination = "figures/ellipse.png"
+    plt.savefig(plot_destination, dpi=500)
+
+    
 ##----------------------------------------------------##
-main()
->>>>>>> fcdac1d5fe56992b4046999f8a456572baec9de5
+
+if __name__ == "__main__":
+    main()
