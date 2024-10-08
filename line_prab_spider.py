@@ -28,9 +28,11 @@ def main():
                 kept_xs.append(x_val)
                 kept_ys.append(y_val)
 
- 
     plt.figure()
-    plt.plot(kept_xs,kept_ys)
+    plt.plot(kept_xs,kept_ys, '.')
+    plt.ylabel('Function')
+    plt.xlabel('Random Values')
+    plt.title('Fuction Using Random Numbers')
     plt.show()
 
 main()
