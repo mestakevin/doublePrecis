@@ -30,6 +30,9 @@ def main():
 
     plt.figure()
     plt.plot(kept_xs,kept_ys, '.')
+    plt.ylabel('Function')
+    plt.xlabel('Random Values')
+    plt.title('Fuction Using Random Numbers')
     plt.show()
 
 main()
