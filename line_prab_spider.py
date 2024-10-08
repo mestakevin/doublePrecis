@@ -29,7 +29,7 @@ def main():
                 kept_ys.append(y_val)
 
  
-    plt.figure
+    plt.figure()
     plt.plot(kept_xs,kept_ys)
     plt.show()
 
