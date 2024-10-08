@@ -21,7 +21,7 @@ def func(x):
 
 
 def main():
-    num_points = 10000
+    num_points = 1000
     hits = 0
     pointlist = draw_rand_points(num_points,func)
     kept_xs = []
