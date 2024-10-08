@@ -8,25 +8,34 @@ def proposal_func(x):
     y = (1.71 * x) + 1.01
     return y
 
-def draw_rand_points(num):
+def draw_rand_points(num,func):
+    pointlist = []
     x_rand_array = np.random.uniform(low=0.0, high=1.0, size=num)
-    upper_bound = math.e + 0.01 #upper bound of function
-    y_rand_array = np.random.uniform(low=0.0, high=upper_bound, size=num)
-    return x_rand_array, y_rand_array
+    for i in x_rand_array:    
+        y_rand_array = np.random.uniform(low=0.0, high=func(i), size=round(num*proposal_func(i)) )
+        for j in y_rand_array:
+            pointlist.append((i,j))
+
+    return pointlist
+
 
 
 def main():
-    num_points = int(1e6)
-    rand_x, rand_y = draw_rand_points(num_points)
     kept_xs = []
-    kept_ys = []
-    for i in range(0,len(rand_x)-1,1):
-        x_val = rand_x[i]
-        y_val = rand_y[i]
-        y_propos_func = proposal_func(x_val)
-            if y_val <= y_propos_func:
-                kept_xs.append(x_val)
-                kept_ys.append(y_val)
+    kept_ys = [] 
+    num_points = 1000
+    hits = 0
+    pointlist = draw_rand_points(num_points,proposal_func)
+    for i in range(0,len(pointlist)-1,1):
+        x_val = pointlist[i][0]
+        y_val = pointlist[i][1]
+        if (y_val <= (math.e ** x_val) ):
+            hits += 1
+            kept_xs.append(x_val)
+            kept_ys.append(y_val)
+
+    efficiency = hits/len(pointlist)
+    print(efficiency) 
 
     plt.figure()
     plt.plot(kept_xs,kept_ys, '.')
