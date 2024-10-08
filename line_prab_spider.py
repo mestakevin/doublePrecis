@@ -28,9 +28,9 @@ def main():
             kept_xs.append(x_val)
             kept_ys.append(y_val)
 
- 
-    plt.figure
-    plt.plot(kept_xs,kept_ys)
+    print(kept_xs)
+    plt.figure()
+    plt.plot(kept_xs,kept_ys, '.')
     plt.show()
 
 main()
