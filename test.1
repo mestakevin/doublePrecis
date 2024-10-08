@@ -10,7 +10,7 @@ def proposal_func(x):
 
 def draw_rand_points(num):
     x_rand_array = np.random.uniform(low=0.0, high=1.0, size=num)
-    upper_bound = math.e + 0.01 #upper bound of function
+    upper_bound = math.e + 0.1
     y_rand_array = np.random.uniform(low=0.0, high=upper_bound, size=num)
     return x_rand_array, y_rand_array
 
@@ -24,12 +24,12 @@ def main():
         x_val = rand_x[i]
         y_val = rand_y[i]
         y_propos_func = proposal_func(x_val)
-            if y_val <= y_propos_func:
-                kept_xs.append(x_val)
-                kept_ys.append(y_val)
+        if y_val <= y_propos_func:
+            kept_xs.append(x_val)
+            kept_ys.append(y_val)
 
  
-    plt.figure()
+    plt.figure
     plt.plot(kept_xs,kept_ys)
     plt.show()
 
