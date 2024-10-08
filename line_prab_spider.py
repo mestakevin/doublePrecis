@@ -24,9 +24,9 @@ def main():
         x_val = rand_x[i]
         y_val = rand_y[i]
         y_propos_func = proposal_func(x_val)
-        if y_val <= y_propos_func:
-            kept_xs.append(x_val)
-            kept_ys.append(y_val)
+            if y_val <= y_propos_func:
+                kept_xs.append(x_val)
+                kept_ys.append(y_val)
 
  
     plt.figure
