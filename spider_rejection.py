@@ -26,6 +26,9 @@ def main():
  
     plt.figure
     plt.plot(kept_xs,kept_ys)
+    plt.ylabel('Y Values')
+    plt.xlabel('X Values')
+    plt.title('Rejection Sampling')
     plt.show()
 
 main()
