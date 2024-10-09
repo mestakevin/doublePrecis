@@ -30,6 +30,7 @@ def main():
     dk = 0.97
     a2 = a*dk 
     b2 = b*dk
+    thickness = (a - a2 + b - b2) / 2
   
     t = np.linspace(0, 2*pi, 100)
     
@@ -42,7 +43,7 @@ def main():
 
     #Random number generator in a rectangle
     points_in_bound = 0
-    points_total = 1000
+    points_total = 5000
 
     accept_x = []
     accept_y = []
@@ -60,16 +61,17 @@ def main():
             reject_x.append(rand_num_x)
             reject_y.append(rand_num_y)
     result_ratio = points_in_bound / points_total
-    circ_ellipse = area_rect * result_ratio
+    area_ellipse = area_rect * result_ratio
+    circ_ellipse = area_ellipse / thickness
 
-    plt.plot(u + (a*np.cos(t)), v + b*np.sin(t) , label= f"Original ellipse, ellipse circum: {circ_ellipse:.2f}" )
-    plt.plot(u + (a2*np.cos(t)), v + (b2*np.sin(t)) , label= f"Inner ellipse, rectangle area: {area_rect:.2f}" )
+    plt.plot(u + (a*np.cos(t)), v + b*np.sin(t) , label= f"Original ellipse" )
+    plt.plot(u + (a2*np.cos(t)), v + (b2*np.sin(t)) , label= f"Inner ellipse" )
     plt.plot(accept_x, accept_y,
             color = '#66ff00', # bright green
             marker = "d",
             linestyle = "None",
             markersize = 3,
-            label = f"Accepted Points: {points_in_bound}")
+            label = f"Accepted Points: {points_in_bound}, ellipse circumference: {circ_ellipse:.2f}")
     
     plt.plot(reject_x, reject_y,
             color = '#ffb7c5', # cherry blossom pink
