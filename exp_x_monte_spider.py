@@ -20,9 +20,8 @@ def func(x):
 ##-----------------------------------------------------------------##
 def draw_rand_points(num):
     x_rand_array = np.random.uniform(low=0.0, high=1.0, size=num)
-    y_rand_array = np.random.uniform(low=0.0, high=math.e, size=num)
 
-    return x_rand_array, y_rand_array
+    return x_rand_array
 ##-----------------------------------------------------------------##
 def main():
     # Set up integration limits and parameters
@@ -33,21 +32,15 @@ def main():
     # Compute the integral using Trapezoidal rule
     value = trapz_rule_v1(n, up_lim, low_lim, func)
     print(f"Trapezoidal= \t {value}")    
-    area =  math.e
+    area_true =  math.e
     hits = 0
-    
-    x_rand_array, y_rand_array = draw_rand_points(10000)
+    area_int = 0
+    x_rand_array = draw_rand_points(n)
 
     for i,value in enumerate(x_rand_array):
-        x_val =  value
-        y_val = y_rand_array[i]
-        if  y_val <= math.e ** x_val:
-            hits += 1
-   
+        area_int += math.e ** value * 1/n
 
-
-    integral = area * (hits/10000)
-    print(integral)
+    print(area_int)
     print(math.e - 1)
  	
     plt.figure()
