@@ -3,6 +3,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from math import pi
 import random
+import statistics
 
 def check_ellipse(x, y, a1, b1, a2, b2):
     """
@@ -87,8 +88,47 @@ def main():
 
     plot_destination = "figures/ellipse.png"
     plt.savefig(plot_destination, dpi=500)
+    plt.clf()
 
-    
+
+    ##------------------------statistical error----------------------------##
+    npoints_list = np.arange(100, 3001, 100)
+    standev_list = []
+
+    for points in npoints_list:
+        circ_list = []
+        for trial in range (1000): # for each dart sample size, repeat 1000 times
+            points_in_bound = 0
+            for i in range (points):
+                rand_num_x = random.uniform(x_min, x_max)
+                rand_num_y = random.uniform(y_min, y_max)
+                if check_ellipse(rand_num_x, rand_num_y, a, b, a2, b2):
+                    points_in_bound += 1
+            result_ratio = points_in_bound / points
+            area_ellipse = area_rect * result_ratio
+            circ_ellipse = area_ellipse / thickness
+            circ_list.append(circ_ellipse)
+
+        standev_list.append(statistics.stdev(circ_list))
+
+        print(f"Number of Darts: {points}")
+        # print(f"Lowest: {min(circ_list):.2f}")
+        # print(f"Highest: {max(circ_list):.2f}")
+        # print(f"Mean: {statistics.mean(circ_list):.2f}")
+        print(f"Standard Deviation: {statistics.stdev(circ_list):.2f}")
+        print(f"")
+
+    plt.plot(npoints_list, standev_list,
+            color = '#7fffd4', # aquamarine
+            marker = "d",
+            linestyle = "None",
+            markersize = 10,
+            label = f"Data")
+    plt.title(f"Statistical Error vs Sample Points, Ellipse Circumference")
+    plt.xlabel(f"Number of Dart Sample for each Simulation")
+    plt.ylabel(f"Standard Deviation of 1000 Circumference Simulations")
+    plot_destination = "figures/ellipse_sim.png"
+    plt.savefig(plot_destination, dpi=500)
 ##----------------------------------------------------##
 
 if __name__ == "__main__":
