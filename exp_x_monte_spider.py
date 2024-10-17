@@ -27,6 +27,10 @@ def choice_func(x):
     y = x**2 + x + 1
     return y
 
+def fav_function(x):
+    sine_fun = np.sin(x)
+    return sine_fun
+
 ##-----------------------------------------------------------------##
 def main():
     # Set up integration limits and parameters
