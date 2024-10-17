@@ -31,6 +31,10 @@ def fav_function(x):
     sine_fun = np.sin(x)
     return sine_fun
 
+def fav_choice_fun(x):
+    y_fav = -0.4 * x**2 + 1.1 * x + 0.6
+    return y_fav
+
 ##-----------------------------------------------------------------##
 def main():
     # Set up integration limits and parameters
