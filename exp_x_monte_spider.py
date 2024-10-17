@@ -57,10 +57,10 @@ def main():
     
     choice_func_integral = 0
     for i, value in enumerate(x_rand_array):
-        mini_chunk = func(value) * c/(choice_func(value))
+        mini_chunk = func(value) /(choice_func(value))
         choice_func_integral += mini_chunk
 
-    print(choice_func_integral)
+    print(choice_func_integral*c)
 
     plt.figure()
     plt.xlabel('')
