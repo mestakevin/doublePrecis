@@ -21,7 +21,17 @@ def brute_force():
 			if val <= minimum:
 				minimum = val
 	return minimum
-	
+
+def gradientMethod():
+    
+	#x_list = np.random.uniform(-2,3,n)
+	#y_list = np.random.uniform(-2,3,n)
+    inital_pos = (0,0)
+    while True:
+        past_positions = []
+        step_size = 0.005
+        x_grad = 
+
 def main():
 	print(brute_force())
 	X, Y, Z = rosen_function()
