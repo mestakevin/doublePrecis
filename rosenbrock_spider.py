@@ -6,5 +6,5 @@ def rosen():
   x = np.linspace(-2, 3, 1000)
   y = np.linspace(-2, 3, 1000)
   X, Y = np.meshgrid(x, y)
-  Z = rosen([X, Y])
+  Z = rosen(np.array[X, Y])
   return Z
