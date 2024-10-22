@@ -10,16 +10,32 @@ def rosen_function():
     Z = rosen(np.array([X, Y]))
     return X, Y, Z
 
-X, Y, Z = rosen_function()
+def brute_force():
+	n = 100 	#Number of points
+	x_list = np.random.uniform(-2,3,n)
+	y_list = np.random.uniform(-2,3,n)
+	minimum = 1e10
+	for i in range(len(x_list)):
+		for j in range(len(y_list)):
+			val = rosen([x_list[i], y_list[j]])
+			if val <= minimum:
+				minimum = val
+	return minimum
+	
+def main():
+	print(brute_force())
+	X, Y, Z = rosen_function()
 
-# 3D plot
-fig = plt.figure(figsize=(10, 8))
-ax = fig.add_subplot(111, projection='3d')
-ax.plot_surface(X, Y, Z, cmap='viridis', edgecolor='none')
+	# 3D plot
+	fig = plt.figure(figsize=(10, 8))
+	ax = fig.add_subplot(111, projection='3d')
+	ax.plot_surface(X, Y, Z, cmap='viridis', edgecolor='none')
 
-ax.set_title("Rosenbrock Function")
-ax.set_xlabel("X-axis")
-ax.set_ylabel("Y-axis")
-ax.set_zlabel("Z-axis (Function Value)")
+	ax.set_title("Rosenbrock Function")
+	ax.set_xlabel("X-axis")
+	ax.set_ylabel("Y-axis")
+	ax.set_zlabel("Z-axis (Function Value)")
 
-plt.show()
+	plt.show()
+	
+main()
