@@ -1,5 +1,5 @@
 import numpy as np
-from scipy.optimize import rosen
+from scipy.optimize import rosen, minimize
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -11,16 +11,32 @@ def rosen_function():
     return X, Y, Z
 
 def brute_force():
-	n = 100 	#Number of points
-	x_list = np.random.uniform(-2,3,n)
-	y_list = np.random.uniform(-2,3,n)
+	x_list = np.linspace(-2, 3, 1000)
+	y_list = np.linspace(-2, 3, 1000)
 	minimum = 1e10
+	x = 0.0
+	y = 0.0
 	for i in range(len(x_list)):
 		for j in range(len(y_list)):
 			val = rosen([x_list[i], y_list[j]])
 			if val <= minimum:
 				minimum = val
-	return minimum
+				x = x_list[i]
+				y = y_list[j]
+	return minimum, [x, y]
+	
+def minimization():
+	# Calculating minimum value by scipy minimization
+	x = np.linspace(-2, 3, 1000)
+	y = np.linspace(-2, 3, 1000)
+	xy = [x, y]
+	def rosenbrock(xy):
+		return rosen(xy)
+		
+	initial_guess = np.array([0, 0])  # Starting point for optimization
+	result = minimize(rosenbrock, initial_guess)
+	print("SciPy minimization value: ", result.fun)
+	print("SciPy minimization coordinate: ", result.x)
 
 def gradientMethod():
     
@@ -30,12 +46,15 @@ def gradientMethod():
     while True:
         past_positions = []
         step_size = 0.005
-        x_grad = 
+        #x_grad = 
 
 def main():
-	print(brute_force())
+	minimum, [x, y] = brute_force()
+	print("Brute-force minimum value: ", minimum)
+	print("Brute-force minimum coordinate: ", [x, y])
+	minimization()
 	X, Y, Z = rosen_function()
-
+	
 	# 3D plot
 	fig = plt.figure(figsize=(10, 8))
 	ax = fig.add_subplot(111, projection='3d')
