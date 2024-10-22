@@ -51,44 +51,15 @@ class doublePrec():
         return f"{self.sign * self.mantissa / (10**10)}e{self.exponent}"
 
     def __ne__(self, other): #not equal to function
-        if (self - other) != 0:
+        if self.a != other.b:
             print("A is not equal to B")
         else:
             print("A is equal to B")
-
-
     def __ge__(self, other): #greater than or equal to
-        if (self - other) >= 0:
+        if self.a >= other.b:
             print("A is greater than or equal to B")
         else:
             print("A is less than B")
-    
-    def __gt__(self, other): #greater than or equal to
-        if (self - other) > 0:
-            print("A is greater than B")
-        else:
-            print("A is less than B")
-
-    def __ls__(self, other):
-        # less than
-        if self.exponent == other.exponent:
-            return self.mantissa < other.mantissa
-        elif self.exponent > other.exponent:
-            return False
-        else:
-            return True
-
-    def __eq__(self, other):
-        # less than equal
-        ex_diff = self.exponent - other.exponent
-        self.exponent -= ex_diff
-        self.mantissa *= 10 ** ex_diff
-        return self.mantissa == other.mantissa
-    
-    def __le__(self, other):
-        # less than equal
-        return (__ls__(self, other) or __eq__(self, other))
-
 
 # Conversion functions and testing
 def convertDouble():
@@ -102,12 +73,19 @@ def convertDouble():
     print("Mult:", c)
     print("Div:", d)
     print("Add:", f)
+    q = ne(a,b)
+    print(q)
+    def __ne__(self, other): #not equal to function
+        if self.a != other.b:
+            print("A is not equal to B")
+        else:
+            print("A is equal to B")
+    def __ge__(self, other): #greater than or equal to
+        if self.a >= other.b:
+            print("A is greater than or equal to B")
+        else:
+            print("A is less than B")
     print("Sub:", g)
-    print("A is greater than B:", a > b)
-    print("A is greater and equal to B:", a >= b)
-    print("A is less than B:", a < b)
-    print("A is less and equal to B:", a <= b)    
-
 def main():
     num = doublePrec(1.2, 10, -1)
     num2 = doublePrec(6.0, 7, -1)
