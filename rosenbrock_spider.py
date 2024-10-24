@@ -30,30 +30,49 @@ def minimization():
 	x = np.linspace(-2, 3, 1000)
 	y = np.linspace(-2, 3, 1000)
 	xy = [x, y]
-	def rosenbrock(xy):
-		return rosen(xy)
 		
 	initial_guess = np.array([0, 0])  # Starting point for optimization
 	result = minimize(rosenbrock, initial_guess)
 	print("SciPy minimization value: ", result.fun)
 	print("SciPy minimization coordinate: ", result.x)
 
+
+def rosenbrock(xy):
+		return rosen(xy)
+
 def gradientMethod():
-    
-	#x_list = np.random.uniform(-2,3,n)
-	#y_list = np.random.uniform(-2,3,n)
-    inital_pos = (0,0)
-    while True:
-        past_positions = []
-        step_size = 0.005
-        #x_grad = 
+	cur_pos = [0.4,0.4]
+	past_pos = []
+	step = 1e-3
+	threshold = 1e-20
+	print(step)
+	print(cur_pos)
+	counter = 0
+	while True: 
+		x_gradient = (rosen([cur_pos[0] + 1e-8, cur_pos[1]]) - rosen([cur_pos[0] - 1e-8, cur_pos[1]]))/(2 * 1e-8)
+		y_gradient = (rosen([cur_pos[0], cur_pos[1] + 1e-8,]) - rosen([cur_pos[0], cur_pos[1] - 1e-8,]))/(2 * 1e-8)
+
+		print("x_gradient is:",x_gradient,"and y gradient is:",y_gradient)
+		new_pos = [cur_pos[0] - x_gradient*step, cur_pos[1] - y_gradient*step]
+
+		counter += 1
+		if ((new_pos[0] - cur_pos[0])**2 + (new_pos[1] - cur_pos[1])**2)**0.5 < threshold:
+			print("Finished after",counter,"iterations")
+			break
+		cur_pos = new_pos
+		print(cur_pos)
+
+       
+         
 
 def main():
-	minimum, [x, y] = brute_force()
-	print("Brute-force minimum value: ", minimum)
-	print("Brute-force minimum coordinate: ", [x, y])
-	minimization()
+	#minimum, [x, y] = brute_force()
+	#print("Brute-force minimum value: ", minimum)
+	#print("Brute-force minimum coordinate: ", [x, y])
+	#minimization()
 	X, Y, Z = rosen_function()
+
+	gradientMethod()
 	
 	# 3D plot
 	fig = plt.figure(figsize=(10, 8))
@@ -65,6 +84,6 @@ def main():
 	ax.set_ylabel("Y-axis")
 	ax.set_zlabel("Z-axis (Function Value)")
 
-	plt.show()
+	#plt.show()
 	
 main()
