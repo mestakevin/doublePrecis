@@ -41,10 +41,10 @@ def rosenbrock(xy):
 		return rosen(xy)
 
 def gradientMethod():
-	cur_pos = [0.4,0.4]
+	cur_pos = [0.0,0.0]
 	past_pos = []
 	step = 1e-3
-	threshold = 1e-20
+	threshold = 1e-15
 	print(step)
 	print(cur_pos)
 	counter = 0
@@ -61,8 +61,6 @@ def gradientMethod():
 			break
 		cur_pos = new_pos
 		print(cur_pos)
-
-       
          
 
 def main():
