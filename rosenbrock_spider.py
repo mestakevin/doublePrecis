@@ -62,6 +62,18 @@ def gradientMethod():
 		cur_pos = new_pos
 		print(cur_pos)
          
+def newtonMethod():
+	init_position = (0,0) #starting point
+	x = np.linspace(-2, 3, 1000)
+	y = np.linspace(-2, 3, 1000)
+	past_pos = []
+	step = 1e-3
+	threshold = 1e-15
+	gradient = gradientMethod()
+	#max = 10000 #maximum number of iterations
+	for i in range(*insert someting*):
+		
+
 
 def main():
 	#minimum, [x, y] = brute_force()
