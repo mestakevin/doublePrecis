@@ -2,6 +2,7 @@ import numpy as np
 from scipy.optimize import rosen, minimize
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from sympy import diff
 
 def rosen_function():
     x = np.linspace(-2, 3, 1000)
@@ -71,6 +72,31 @@ def gradientMethod():
 		print(cur_pos)
          
 	plt.show()
+
+def newtonMethod():
+	cur_pos = [0.0,0.0]
+	past_pos = []
+	step = 1e-3
+	threshold = 1e-15
+	print(step)
+	print(cur_pos)
+	counter = 0
+	while True: 
+		x_gradient = (rosen([cur_pos[0] + 1e-8, cur_pos[1]]) - rosen([cur_pos[0] - 1e-8, cur_pos[1]]))/(2 * 1e-8)
+		y_gradient = (rosen([cur_pos[0], cur_pos[1] + 1e-8,]) - rosen([cur_pos[0], cur_pos[1] - 1e-8,]))/(2 * 1e-8)
+
+		gradient_x_gradient = diff(x_gradient)
+		gradient_y_gradient = diff(y_gradient) 
+		
+		print("x_gradient is:",x_gradient,"and y gradient is:",y_gradient)
+		new_pos = [cur_pos[0] - x_gradient*step, cur_pos[1] - y_gradient*step]
+
+		counter += 1
+		if ((new_pos[0] - cur_pos[0])**2 + (new_pos[1] - cur_pos[1])**2)**0.5 < threshold:
+			print("Finished after",counter,"iterations")
+			break
+		cur_pos = new_pos
+		print(cur_pos)
 
 def main():
 	#minimum, [x, y] = brute_force()
