@@ -41,19 +41,27 @@ def rosenbrock(xy):
 		return rosen(xy)
 
 def gradientMethod():
-	cur_pos = [0.0,0.0]
-	past_pos = []
-	step = 1e-3
-	threshold = 1e-15
+
+
+	cur_pos = [-2,-2]
+	step = 1e-5
+	threshold = 1e-10
+	dh = 1e-10
 	print(step)
 	print(cur_pos)
 	counter = 0
+	plt.figure()
+	plt.ylabel('Y Values')
+	plt.xlabel('X Values')
+	
 	while True: 
-		x_gradient = (rosen([cur_pos[0] + 1e-8, cur_pos[1]]) - rosen([cur_pos[0] - 1e-8, cur_pos[1]]))/(2 * 1e-8)
-		y_gradient = (rosen([cur_pos[0], cur_pos[1] + 1e-8,]) - rosen([cur_pos[0], cur_pos[1] - 1e-8,]))/(2 * 1e-8)
+		x_gradient = (rosen([cur_pos[0] + dh, cur_pos[1]]) - rosen([cur_pos[0] - dh, cur_pos[1]]))/(2 * dh)
+		y_gradient = (rosen([cur_pos[0], cur_pos[1] + dh,]) - rosen([cur_pos[0], cur_pos[1] - 1e-10,]))/(2 * dh)
 
 		print("x_gradient is:",x_gradient,"and y gradient is:",y_gradient)
 		new_pos = [cur_pos[0] - x_gradient*step, cur_pos[1] - y_gradient*step]
+		
+		plt.plot(new_pos[0],new_pos[1], label='.')
 
 		counter += 1
 		if ((new_pos[0] - cur_pos[0])**2 + (new_pos[1] - cur_pos[1])**2)**0.5 < threshold:
@@ -62,6 +70,7 @@ def gradientMethod():
 		cur_pos = new_pos
 		print(cur_pos)
          
+	plt.show()
 
 def main():
 	#minimum, [x, y] = brute_force()
